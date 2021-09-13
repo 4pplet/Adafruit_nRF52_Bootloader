@@ -49,6 +49,8 @@ jobs:
           # - 'waveshare_nrf52840_eval'
           # Custom Boards
           - 'plonck'
+          - 'cyber60_b'
+          - 'cyber60_c'
 
     steps:
     - name: Setup Python
