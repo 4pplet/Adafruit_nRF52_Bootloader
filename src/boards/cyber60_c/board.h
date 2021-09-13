@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-#ifndef PCA10056_H
-#define PCA10056_H
+#ifndef CYBER60_C_H
+#define CYBER60_C_H
 
 #define _PINNUM(port, pin)    ((port)*32 + (pin))
 
@@ -31,7 +31,7 @@
 /* LED
  *------------------------------------------------------------------*/
 #define LEDS_NUMBER           1
-#define LED_PRIMARY_PIN       _PINNUM(1, 10)  // Red
+#define LED_PRIMARY_PIN       _PINNUM(0, 5)  // Red
 #define LED_STATE_ON          0
 
 
@@ -40,9 +40,9 @@
 //#define NEOPIXELS_NUMBER      1
 
 
-#define LED_RGB_RED_PIN       _PINNUM(1, 10)
-#define LED_RGB_GREEN_PIN     _PINNUM(1, 11)
-#define LED_RGB_BLUE_PIN      _PINNUM(1, 12)
+#define LED_RGB_RED_PIN       _PINNUM(0, 5)
+#define LED_RGB_GREEN_PIN     _PINNUM(0, 7)
+#define LED_RGB_BLUE_PIN      _PINNUM(1, 9)
 #define BOARD_RGB_BRIGHTNESS  0x404040
 
 /*------------------------------------------------------------------*/
@@ -68,8 +68,9 @@
 #define USB_DESC_UF2_PID       0x0029
 #define USB_DESC_CDC_ONLY_PID  0x0029
 
-#define UF2_PRODUCT_NAME    "4pplet cyber60"
-#define UF2_BOARD_ID        "nRF52840-cyber60-rev_b"
-#define UF2_INDEX_URL       "https://www.4pplet.com"
+#define UF2_PRODUCT_NAME    "cyber60 Rev C"
+#define UF2_VOLUME_LABEL    "CYBER60"
+#define UF2_BOARD_ID        "nRF52840-cyber60-rev_c"
+#define UF2_INDEX_URL       "https://github.com/4pplet/cyber60"
 
-#endif // PCA10056_H
+#endif // CYBER60_V_H
