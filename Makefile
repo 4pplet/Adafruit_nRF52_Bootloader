@@ -104,14 +104,17 @@ ifeq ($(MCU_SUB_VARIANT),nrf52)
   SD_NAME = s132
   DFU_DEV_REV = 0xADAF
   CFLAGS += -DNRF52 -DNRF52832_XXAA -DS132
+  CFLAGS += -DDFU_APP_DATA_RESERVED=7*4096
 else ifeq ($(MCU_SUB_VARIANT),nrf52833)
   SD_NAME = s140
   DFU_DEV_REV = 52840
   CFLAGS += -DNRF52833_XXAA -DS140
+  CFLAGS += -DDFU_APP_DATA_RESERVED=7*4096
 else ifeq ($(MCU_SUB_VARIANT),nrf52840)
   SD_NAME = s140
   DFU_DEV_REV = 52840
   CFLAGS += -DNRF52840_XXAA -DS140
+  CFLAGS += -DDFU_APP_DATA_RESERVED=10*4096
 else
   $(error Sub Variant $(MCU_SUB_VARIANT) is unknown)
 endif
@@ -232,15 +235,6 @@ IPATH += $(SD_PATH)/$(SD_FILENAME)_API/include/nrf52
 # Compiler Flags
 #------------------------------------------------------------------------------
 
-# Debug option use RTT for printf
-ifeq ($(DEBUG), 1)
-	RTT_SRC = lib/SEGGER_RTT
-	
-	CFLAGS += -DCFG_DEBUG -DSEGGER_RTT_MODE_DEFAULT=SEGGER_RTT_MODE_BLOCK_IF_FIFO_FULL
-	IPATH += $(RTT_SRC)/RTT
-  C_SRC += $(RTT_SRC)/RTT/SEGGER_RTT.c
-endif
-
 #flags common to all targets
 CFLAGS += \
 	-mthumb \
@@ -276,6 +270,18 @@ CFLAGS += -Wno-unused-parameter -Wno-expansion-to-defined
 # TinyUSB tusb_hal_nrf_power_event
 CFLAGS += -Wno-cast-function-type
 
+# Nordic Softdevice SDK header files contains inline assembler that has
+# broken constraints. As a result the IPA-modref pass, introduced in gcc-11,
+# is able to "prove" that arguments to wrapper functions generated with
+# the SVCALL() macro are unused and, as a result, the optimizer will remove
+# code within the callers that sets up these arguments (which results in
+# a broken bootloader). The broken headers come from Nordic-supplied zip
+# files and are not trivial to patch so, for now, we'll simply disable the
+# new gcc-11 inter-procedural optimizations.
+ifeq (,$(findstring unrecognized,$(shell $(CC) $(CFLAGS) -fno-ipa-modref 2>&1)))
+CFLAGS += -fno-ipa-modref
+endif
+
 # Defined Symbol (MACROS)
 CFLAGS += -D__HEAP_SIZE=0
 CFLAGS += -DCONFIG_GPIO_AS_PINRESET
@@ -286,13 +292,19 @@ ifneq ($(USE_NFCT),yes)
 endif
 
 CFLAGS += -DSOFTDEVICE_PRESENT
-CFLAGS += -DDFU_APP_DATA_RESERVED=7*4096
-
 CFLAGS += -DUF2_VERSION='"$(GIT_VERSION) $(GIT_SUBMODULE_VERSIONS)"'
 CFLAGS += -DBLEDIS_FW_VERSION='"$(GIT_VERSION) $(SD_NAME) $(SD_VERSION)"'
 
 _VER = $(subst ., ,$(word 1, $(subst -, ,$(GIT_VERSION))))
 CFLAGS += -DMK_BOOTLOADER_VERSION='($(word 1,$(_VER)) << 16) + ($(word 2,$(_VER)) << 8) + $(word 3,$(_VER))'
+
+# Debug option use RTT for printf
+ifeq ($(DEBUG), 1)
+  CFLAGS += -DCFG_DEBUG -DSEGGER_RTT_MODE_DEFAULT=SEGGER_RTT_MODE_BLOCK_IF_FIFO_FULL
+  RTT_SRC = lib/SEGGER_RTT
+  IPATH += $(RTT_SRC)/RTT
+  C_SRC += $(RTT_SRC)/RTT/SEGGER_RTT.c
+endif
 
 #------------------------------------------------------------------------------
 # Linker Flags
