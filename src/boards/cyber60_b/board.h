@@ -72,6 +72,5 @@
 #define UF2_VOLUME_LABEL    "CYBER60_B"
 #define UF2_BOARD_ID        "nRF52840-cyber60-rev_b"
 #define UF2_INDEX_URL       "https://github.com/4pplet/cyber60"
-#define MK_BOOTLOADER_VERSION   "v0.1"
 
 #endif // CYBER60_B_H

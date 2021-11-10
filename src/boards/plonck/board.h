@@ -59,6 +59,5 @@
 #define UF2_VOLUME_LABEL  "PLONCK"
 #define UF2_BOARD_ID      "plonck rev B0"
 #define UF2_INDEX_URL     "https://github.com/swampmonster/plonck"
-#define MK_BOOTLOADER_VERSION   "v0.1"
 
 #endif // _PLONCK_H
