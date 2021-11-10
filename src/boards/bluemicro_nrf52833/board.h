@@ -1,9 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * @author   Tavish Naruka <tavish@electronut.in>
- *
- * Copyright (c) 2018 Adafruit Industries
+ * Copyright (c) 2020 Pierre Constantineau
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,44 +22,48 @@
  * THE SOFTWARE.
  */
 
-#ifndef PAPYR_H
-#define PAPYR_H
+#ifndef _BLUEMICRO_NRF52833_H
+#define _BLUEMICRO_NRF52833_H
+
+#define _PINNUM(port, pin)    ((port)*32 + (pin))
 
 /*------------------------------------------------------------------*/
 /* LED
  *------------------------------------------------------------------*/
-#define LEDS_NUMBER         2
-#define LED_PRIMARY_PIN     13
-#define LED_SECONDARY_PIN   14
-#define LED_STATE_ON        0
+#define LEDS_NUMBER           2
+#define LED_PRIMARY_PIN       _PINNUM(1, 4)
+#define LED_SECONDARY_PIN     _PINNUM(0, 25)
+#define LED_STATE_ON          1
+
+#define LED_NEOPIXEL          _PINNUM(0, 7)
+#define NEOPIXELS_NUMBER      1
+#define BOARD_RGB_BRIGHTNESS  0x040404
 
 /*------------------------------------------------------------------*/
 /* BUTTON
  *------------------------------------------------------------------*/
-// NOTE: USB UF2 bootloader can be triggered by double pressing RESET
-// App can trigger OTA bootloader by writing DFU_MAGIC_OTA_APPJUM to
-// GPREGRET register if softdevice is not initialized; or by
-// writing DFU_MAGIC_OTA_RESET in case softdevice is initialized.
-#define BUTTONS_NUMBER      2
-#define BUTTON_1            18 // RESET also by default
-#define BUTTON_2            1  // P0.1 not exposed anywhere, FRST n/a
-#define BUTTON_PULL         NRF_GPIO_PIN_PULLUP
+#define BUTTONS_NUMBER    2                 // none connected at all
+#define BUTTON_1          _PINNUM(0, 18)    // unusable: RESET
+#define BUTTON_2          _PINNUM(1, 1)     // no connection on E73-2G4M08S1E Module
+#define BUTTON_PULL       NRF_GPIO_PIN_PULLUP
 
 //--------------------------------------------------------------------+
 // BLE OTA
 //--------------------------------------------------------------------+
-#define BLEDIS_MANUFACTURER    "Electronut Labs"
-#define BLEDIS_MODEL           "Papyr"
+#define BLEDIS_MANUFACTURER  "BlueMicro"
+#define BLEDIS_MODEL         "BlueMicro 833"
 
 //--------------------------------------------------------------------+
-// USB
+// USB PID from openmoko:
+// PR https://github.com/openmoko/openmoko-usb-oui/pull/34
 //--------------------------------------------------------------------+
-#define UF2_PRODUCT_NAME    "Electronut Labs Papyr"
-#define UF2_BOARD_ID        "nRF52840-Papyr-v1"
-#define UF2_INDEX_URL       "https://docs.electronut.in/papyr"
+#define USB_DESC_VID           0x1d50
+#define USB_DESC_UF2_PID       0x616f
+#define USB_DESC_CDC_ONLY_PID  0x616f
 
-#define USB_DESC_VID           0x239A
-#define USB_DESC_UF2_PID       0x003B
-#define USB_DESC_CDC_ONLY_PID  0x003B
+#define UF2_PRODUCT_NAME  "BlueMicro"
+#define UF2_VOLUME_LABEL  "BLUEMICRO"
+#define UF2_BOARD_ID      "nRF52833-BlueMicro-v1"
+#define UF2_INDEX_URL     "http://bluemicro.jpconstantineau.com/"
 
-#endif // PPAPYR_H
+#endif // _BLUEMICRO_H
