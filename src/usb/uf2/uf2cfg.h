@@ -2,7 +2,11 @@
 #include "dfu_types.h"
 
 // Family ID for updating generic Application
-#define CFG_UF2_FAMILY_APP_ID     0xADA52840
+#if defined(NRF52833_XXAA)
+    #define CFG_UF2_FAMILY_APP_ID     0x621E937A
+#elif defined(NRF52840_XXAA)
+    #define CFG_UF2_FAMILY_APP_ID     0xADA52840
+#endif
 
 // Board-specific ID for board-specific Application
 #if defined(USB_DESC_VID) && defined(USB_DESC_UF2_PID) && USB_DESC_VID && USB_DESC_UF2_PID
@@ -14,7 +18,11 @@
 #define CFG_UF2_FAMILY_BOOT_ID    0xd663823c
 
 #define CFG_UF2_NUM_BLOCKS        0x10109     // just under 32MB
-#define CFG_UF2_FLASH_SIZE        (1024*1024) // 1 MB
+#if defined(NRF52833_XXAA)
+    #define CFG_UF2_FLASH_SIZE        0x80000 // 512 kB
+#else
+    #define CFG_UF2_FLASH_SIZE        (1024*1024) // 1 MB
+#endif
 
 // Application Address Space
 #define USER_FLASH_START          MBR_SIZE // skip MBR included in SD hex
