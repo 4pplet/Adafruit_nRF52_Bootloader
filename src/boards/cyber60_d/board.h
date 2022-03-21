@@ -36,8 +36,8 @@
 #define LED_STATE_ON          0
 
 //Alternatively, add underglow as neooixel? (metro_nrf52840_express)
-#define LED_NEOPIXEL          _PINNUM(0, 4)
-#define NEOPIXELS_NUMBER      16
+//#define LED_NEOPIXEL          _PINNUM(0, 4)
+//#define NEOPIXELS_NUMBER      16
 
 #define LED_RGB_RED_PIN       _PINNUM(0, 5)
 #define LED_RGB_GREEN_PIN     _PINNUM(0, 7)
