@@ -22,42 +22,38 @@
  * THE SOFTWARE.
  */
 
-#ifndef CYBER60_B_H
-#define CYBER60_B_H
+#ifndef CYBER60_D_H
+#define CYBER60_D_H
 
 #define _PINNUM(port, pin)    ((port)*32 + (pin))
 
 /*------------------------------------------------------------------*/
 /* LED
  *------------------------------------------------------------------*/
-#define LEDS_NUMBER           1
-#define LED_PRIMARY_PIN       _PINNUM(0, 4)  // Red
+#define LEDS_NUMBER           2
+#define LED_PRIMARY_PIN       LED_RGB_RED_PIN  // Red
+#define LED_SECONDARY_PIN     LED_RGB_GREEN_PIN // Blue
 #define LED_STATE_ON          0
 
-
 //Alternatively, add underglow as neooixel? (metro_nrf52840_express)
-//#define LED_NEOPIXEL          _PINNUM(0, 13)
-//#define NEOPIXELS_NUMBER      1
+#define LED_NEOPIXEL          _PINNUM(0, 4)
+#define NEOPIXELS_NUMBER      16
 
-
-#define LED_RGB_RED_PIN       _PINNUM(0, 4)
-#define LED_RGB_GREEN_PIN     _PINNUM(0, 28)
-#define LED_RGB_BLUE_PIN      _PINNUM(0, 2)
+#define LED_RGB_RED_PIN       _PINNUM(0, 5)
+#define LED_RGB_GREEN_PIN     _PINNUM(0, 7)
+#define LED_RGB_BLUE_PIN      _PINNUM(1, 9)
 #define BOARD_RGB_BRIGHTNESS  0x404040
 
 /*------------------------------------------------------------------*/
 /* BUTTON
  *------------------------------------------------------------------*/
-#define BUTTONS_NUMBER      2
-#define BUTTON_1            11
-#define BUTTON_2            12
-#define BUTTON_PULL         NRF_GPIO_PIN_PULLUP
+#define BUTTONS_NUMBER      0
 
 //--------------------------------------------------------------------+
 // BLE OTA
 //--------------------------------------------------------------------+
 #define BLEDIS_MANUFACTURER    "4pplet"
-#define BLEDIS_MODEL           "cyber60 B"
+#define BLEDIS_MODEL           "cyber60 D"
 
 //--------------------------------------------------------------------+
 // USB
@@ -68,9 +64,9 @@
 #define USB_DESC_UF2_PID       0x0029
 #define USB_DESC_CDC_ONLY_PID  0x0029
 
-#define UF2_PRODUCT_NAME    "cyber60 Rev B"
-#define UF2_VOLUME_LABEL    "CYBER60_B"
-#define UF2_BOARD_ID        "nRF52840-cyber60-rev_b"
+#define UF2_PRODUCT_NAME    "cyber60 Rev D"
+#define UF2_VOLUME_LABEL    "CYBER60_D"
+#define UF2_BOARD_ID        "nRF52840-cyber60-rev_d"
 #define UF2_INDEX_URL       "https://github.com/4pplet/cyber60"
 
-#endif // CYBER60_B_H
+#endif // CYBER60_V_H

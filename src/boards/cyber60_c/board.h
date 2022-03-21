@@ -57,7 +57,7 @@
 // BLE OTA
 //--------------------------------------------------------------------+
 #define BLEDIS_MANUFACTURER    "4pplet"
-#define BLEDIS_MODEL           "cyber60"
+#define BLEDIS_MODEL           "cyber60 C"
 
 //--------------------------------------------------------------------+
 // USB

@@ -51,6 +51,7 @@ jobs:
           - 'plonck'
           - 'cyber60_b'
           - 'cyber60_c'
+          - 'cyber60_d'
 
     steps:
     - name: Setup Python
