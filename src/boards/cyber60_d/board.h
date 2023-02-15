@@ -31,8 +31,8 @@
 /* LED
  *------------------------------------------------------------------*/
 #define LEDS_NUMBER           2
-#define LED_PRIMARY_PIN       _PINNUM(0, 5)//Red
-#define LED_SECONDARY_PIN     _PINNUM(0, 7) //Green
+#define LED_PRIMARY_PIN       _PINNUM(0, 5) //Green
+#define LED_SECONDARY_PIN     _PINNUM(0, 7) //Red
 #define LED_STATE_ON          0
 
 #define LED_NEOPIXEL           _PINNUM(0, 4)

@@ -31,17 +31,11 @@
 /* LED
  *------------------------------------------------------------------*/
 #define LEDS_NUMBER           1
-#define LED_PRIMARY_PIN       _PINNUM(0, 5)  // Red
+#define LED_PRIMARY_PIN       _PINNUM(0, 5)  // Green
 #define LED_STATE_ON          0
 
-
-//Alternatively, add underglow as neooixel? (metro_nrf52840_express)
-//#define LED_NEOPIXEL          _PINNUM(0, 13)
-//#define NEOPIXELS_NUMBER      1
-
-
-#define LED_RGB_RED_PIN       _PINNUM(0, 5)
-#define LED_RGB_GREEN_PIN     _PINNUM(0, 7)
+#define LED_RGB_RED_PIN       _PINNUM(0, 7)
+#define LED_RGB_GREEN_PIN     _PINNUM(0, 5)
 #define LED_RGB_BLUE_PIN      _PINNUM(1, 9)
 #define BOARD_RGB_BRIGHTNESS  0x404040
 
