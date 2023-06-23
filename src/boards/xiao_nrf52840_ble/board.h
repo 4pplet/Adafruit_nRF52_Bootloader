@@ -22,48 +22,47 @@
  * THE SOFTWARE.
  */
 
-#ifndef _FEATHER_NRF52840_H
-#define _FEATHER_NRF52840_H
+#ifndef _XIAO_BLE
+#define _XIAO_BLE
 
 #define _PINNUM(port, pin)    ((port)*32 + (pin))
 
 /*------------------------------------------------------------------*/
 /* LED
  *------------------------------------------------------------------*/
-#define LEDS_NUMBER           2
-#define LED_PRIMARY_PIN       _PINNUM(1, 15)
-#define LED_SECONDARY_PIN     _PINNUM(1, 10)
-#define LED_STATE_ON          1
+// The board has 3 leds, but changing the number here causes OTA issues.
+#define LEDS_NUMBER           1
+#define LED_PRIMARY_PIN       _PINNUM(0, 26)
+#define LED_STATE_ON          0
 
-#define LED_NEOPIXEL          _PINNUM(0, 16)
-#define NEOPIXELS_NUMBER      1
-#define BOARD_RGB_BRIGHTNESS  0x040404
+#define NEOPIXELS_NUMBER      0
 
 /*------------------------------------------------------------------*/
 /* BUTTON
  *------------------------------------------------------------------*/
 #define BUTTONS_NUMBER        2
-#define BUTTON_1              _PINNUM(1, 02)
-#define BUTTON_2              _PINNUM(0, 10)
+#define BUTTON_1              _PINNUM(0, 18)
+// Button 2 is defined as D1 from expansion board.
+#define BUTTON_2              _PINNUM(0, 3)
 #define BUTTON_PULL           NRF_GPIO_PIN_PULLUP
 
 //--------------------------------------------------------------------+
 // BLE OTA
 //--------------------------------------------------------------------+
-#define BLEDIS_MANUFACTURER   "Adafruit Industries"
-#define BLEDIS_MODEL          "Feather nRF52840 Express"
+#define BLEDIS_MANUFACTURER   "Seeed"
+#define BLEDIS_MODEL          "XIAO nRF52840"
 
 //--------------------------------------------------------------------+
 // USB
 //--------------------------------------------------------------------+
-#define USB_DESC_VID           0x239A
-#define USB_DESC_UF2_PID       0x0029
-#define USB_DESC_CDC_ONLY_PID  0x002A
+#define USB_DESC_VID           0x2886
+#define USB_DESC_UF2_PID       0x0044
+#define USB_DESC_CDC_ONLY_PID  0x0044
 
 //------------- UF2 -------------//
-#define UF2_PRODUCT_NAME      "Adafruit Feather nRF52840 Express"
-#define UF2_VOLUME_LABEL      "FTHR840BOOT"
-#define UF2_BOARD_ID          "nRF52840-Feather-revD"
-#define UF2_INDEX_URL         "https://www.adafruit.com/product/4062"
+#define UF2_PRODUCT_NAME   "Seeed XIAO nRF52840"
+#define UF2_VOLUME_LABEL   "XIAO-BOOT"
+#define UF2_BOARD_ID       "nRF52840-SeeedXiao-v1"
+#define UF2_INDEX_URL      "https://www.seeedstudio.com/"
 
-#endif // _FEATHER_NRF52840_H
+#endif // _XIAO_BLE
