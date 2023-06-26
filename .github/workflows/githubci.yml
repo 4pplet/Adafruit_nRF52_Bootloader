@@ -64,6 +64,7 @@ jobs:
           - 'whkb_pro2'
           - 'cyber60_b'
           - 'cyber60_c'
+          - 'cyber60_d'
     steps:
     - name: Setup Python
       uses: actions/setup-python@v3
