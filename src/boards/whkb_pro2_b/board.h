@@ -41,8 +41,8 @@
 /* BUTTON
  *------------------------------------------------------------------*/
 #define BUTTONS_NUMBER    2
-#define BUTTON_1          _PINNUM(0, 18)  // RESET
-#define BUTTON_2          _PINNUM(0, 19)  // RESET
+#define BUTTON_1          _PINNUM(0, 13)  // RESET
+#define BUTTON_2          _PINNUM(0, 17)  // UNUSED
 #define BUTTON_PULL       NRF_GPIO_PIN_PULLUP
 
 //--------------------------------------------------------------------+
@@ -65,4 +65,4 @@
 #define UF2_BOARD_ID        "nRF52840-whkb_pro_2_b"
 #define UF2_INDEX_URL       "https://github.com/4pplet/whkb"
 
-#endif // WHKB_PRO2_H
+#endif // WHKB_PRO2_B_H
