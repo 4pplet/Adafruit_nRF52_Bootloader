@@ -39,10 +39,16 @@
 
 /*------------------------------------------------------------------*/
 /* BUTTON
+ * WARNING: P0.06 and P0.08 are NOT unused - they are BIT3/BIT4 for
+ * the HHKB column addressing! Do NOT use any HHKB connector pins:
+ *   P0.13 (KEY), P0.20 (HYS), P0.17/P0.15/P0.26 (Row bits),
+ *   P0.06/P0.08/P0.04 (Col bits), P0.12 (STROBE)
+ *
+ * Using P0.18 (reset button S301) for bootloader entry via double-tap.
  *------------------------------------------------------------------*/
 #define BUTTONS_NUMBER    2
-#define BUTTON_1          _PINNUM(0, 6)  // UNUSED
-#define BUTTON_2          _PINNUM(0, 8)  // UNUSED
+#define BUTTON_1          _PINNUM(0, 18)  // Reset button (S301) - double-tap enters bootloader
+#define BUTTON_2          _PINNUM(0, 18)  // Same as BUTTON_1 (no second button available)
 #define BUTTON_PULL       NRF_GPIO_PIN_PULLUP
 
 /*------------------------------------------------------------------*/

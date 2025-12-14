@@ -1,5 +1,6 @@
 #include "boards.h"
 #include "uf2/configkeys.h"
+#include "nrf_gpio.h"
 
 __attribute__((used, section(".bootloaderConfig")))
 const uint32_t bootloaderConfig[] =
@@ -17,3 +18,15 @@ const uint32_t bootloaderConfig[] =
   0, 0, 0, 0, 0, 0, 0, 0
   /* CF2 END */
 };
+
+/*
+ * board_init2() is called during bootloader init.
+ * Force LDO_CONTROL_PIN (P0.29) LOW to keep the HHKB board powered off
+ * during bootloader mode. This prevents interference from the keyboard
+ * sensing circuit and allows reliable bootloader entry.
+ */
+void board_init2(void) {
+  // Force HHKB LDO off during bootloader
+  nrf_gpio_cfg_output(LDO_CONTROL_PIN);
+  nrf_gpio_pin_write(LDO_CONTROL_PIN, 0);  // Keep LDO disabled
+}
